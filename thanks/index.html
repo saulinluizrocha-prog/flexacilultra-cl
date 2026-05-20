@@ -33,7 +33,7 @@
       align-items: center;
       gap: 18px;
     }
-    .logo-img { width: 88px; height: auto; display: block; }
+    .logo-svg { display: block; flex-shrink: 0; }
     .header-sep { width: 1px; height: 34px; background: #e0e0e0; flex-shrink: 0; }
     .header-label { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.8px; line-height: 1.5; }
     .header-label strong { color: #1BB500; font-size: 13px; display: block; }
@@ -105,6 +105,45 @@
     }
     .order-pill-label { opacity: 0.85; font-weight: 600; }
     .order-pill-number { font-size: 17px; font-weight: 900; letter-spacing: 1.5px; }
+
+    /* ── PRODUCT CARD ────────────────────────── */
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+    .product-img {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .product-img img {
+      width: 130px; height: 130px; display: block;
+      border-radius: 12px; object-fit: contain;
+      background: #f8f8f8;
+    }
+    .product-details { flex: 1; }
+    .product-title { font-size: 21px; font-weight: 900; color: #111; margin-bottom: 4px; }
+    .product-subtitle { font-size: 13px; color: #999; margin-bottom: 18px; }
+    .clinically-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: #f0f6ff;
+      border: 1.5px solid #1a56db;
+      border-radius: 12px;
+      padding: 11px 14px;
+    }
+    .clinically-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: #1a56db; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 20px; font-weight: 900;
+    }
+    .clinically-text { font-size: 12px; font-weight: 700; color: #1a56db; line-height: 1.5; }
+    .clinically-text strong { color: #0a3db5; }
 
     /* ── STEPS SECTION ───────────────────────── */
     .steps-wrapper { margin-bottom: 22px; }
@@ -183,35 +222,6 @@
       letter-spacing: 1px; min-width: 58px;
     }
 
-    /* ── PRODUCT CARD ────────────────────────── */
-    .product-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 26px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-      display: flex;
-      gap: 26px;
-      align-items: center;
-    }
-    .product-img img {
-      width: 130px; height: auto; display: block;
-      border-radius: 12px; object-fit: contain;
-    }
-    .product-details { flex: 1; }
-    .product-title { font-size: 21px; font-weight: 900; color: #111; margin-bottom: 4px; }
-    .product-subtitle { font-size: 13px; color: #999; margin-bottom: 18px; }
-    .clinically-badge {
-      display: flex; align-items: center; gap: 12px;
-      background: #f0f6ff;
-      border: 1.5px solid #1a56db;
-      border-radius: 12px;
-      padding: 11px 14px;
-    }
-    .clinically-badge img { width: 38px; height: auto; flex-shrink: 0; display: block; }
-    .clinically-text { font-size: 12px; font-weight: 700; color: #1a56db; line-height: 1.5; }
-    .clinically-text strong { color: #0a3db5; }
-
     /* ── TRUST SEALS ─────────────────────────── */
     .trust-section { margin-bottom: 20px; }
     .trust-header {
@@ -240,12 +250,11 @@
       margin-bottom: 18px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       border: 1.5px solid #e8e8e8;
     }
-    .dist-logo img { width: 70px; height: auto; }
-    .dist-sep { width: 1px; height: 30px; background: #ddd; }
+    .dist-sep { width: 1px; height: 30px; background: #ddd; flex-shrink: 0; }
     .dist-text { font-size: 12px; color: #888; font-weight: 600; }
     .dist-text strong { color: #1BB500; font-size: 14px; display: block; }
 
@@ -259,7 +268,6 @@
       max-width: 860px; margin: 0 auto;
       display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
     }
-    .footer-logo-img { width: 70px; height: auto; display: block; }
     .footer-sep { width: 1px; height: 28px; background: #ddd; flex-shrink: 0; }
     .footer-info { font-size: 11px; color: #aaa; line-height: 1.7; }
     .footer-info a { color: #aaa; text-decoration: none; }
@@ -284,7 +292,31 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <img class="logo-img" src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      <!-- Logo SVG inline — não depende de arquivo externo -->
+      <div class="logo-svg">
+        <svg width="90" height="27" viewBox="0 0 99 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.6719 11.9108H23.3344V0H11.6983V6.11465H17.6719V11.9108Z" fill="#FA4D34"/>
+          <path d="M11.6361 11.9745V6.11465H0V18.0892H5.9736V11.9745H11.6361Z" fill="#E6392A"/>
+          <path d="M11.6361 18.0892H5.97361V30H17.6719V23.8854H11.6361V18.0892Z" fill="#FA4D34"/>
+          <path d="M17.6719 18.0892V23.8854H29.308V11.9108H23.3344V18.0892H17.6719Z" fill="#E6392A"/>
+          <path d="M39.4507 16.4331V6.05096H41.6908V14.3949H46.0465V16.4331H39.4507Z" fill="black"/>
+          <path d="M54.9447 16.4331L54.0113 14.2038H49.78L48.8466 16.4331H46.4199L50.8378 6.05096H53.0157L57.4337 16.4331H54.9447ZM51.8957 9.10829L50.5889 12.1019H53.1402L51.8957 9.10829Z" fill="black"/>
+          <path d="M57.9315 16.4331V14.8408L63.2828 8.02549H58.1182V6.05096H66.3319V7.64332L61.0427 14.3949H66.4563V16.4331H57.9315Z" fill="black"/>
+          <path d="M75.6656 16.4331L74.7322 14.2038H70.5009L69.5676 16.4331H67.1408L71.5588 6.05096H73.7366L78.1546 16.4331H75.6656ZM72.6166 9.10829L71.3099 12.1019H73.8611L72.6166 9.10829Z" fill="black"/>
+          <path d="M87.4884 9.49045C87.4884 11.1465 86.8661 12.2293 85.5594 12.7389L88.1106 16.4331H85.3105L83.0704 13.121H81.5148V16.4331H79.2747V6.05096H83.1326C84.6883 6.05096 85.8083 6.30574 86.4928 6.87899C87.1773 7.38854 87.4884 8.28026 87.4884 9.49045ZM84.7505 10.7006C85.0616 10.4459 85.186 10.0637 85.186 9.49045C85.186 8.91721 85.0616 8.53504 84.7505 8.34396C84.4393 8.15288 83.9415 8.02549 83.1948 8.02549H81.5148V11.0828H83.1948C83.9415 11.0828 84.5016 10.9554 84.7505 10.7006Z" fill="black"/>
+          <path d="M97.5688 7.38854C98.5644 8.28026 99 9.55415 99 11.1465C99 12.7389 98.5022 14.0127 97.5688 14.9682C96.6354 15.9236 95.2043 16.3694 93.2131 16.3694H89.7285V6.05096H93.3375C95.2043 6.05096 96.6354 6.49682 97.5688 7.38854ZM95.951 13.5669C96.511 13.0573 96.7599 12.2293 96.7599 11.2102C96.7599 10.1911 96.511 9.42676 95.951 8.85351C95.3909 8.28026 94.5198 8.02549 93.3997 8.02549H92.1552V14.3312H93.5864C94.582 14.3949 95.3909 14.1401 95.951 13.5669Z" fill="black"/>
+          <path d="M40.6329 24.6497L39.6995 21.0191H40.1973L40.6329 22.8663C40.7574 23.3121 40.8196 23.758 40.8818 24.1402C40.944 23.758 41.0685 23.3121 41.1929 22.8663L41.6907 21.0191H42.1885L42.6241 22.8663C42.7485 23.3121 42.8108 23.758 42.873 24.1402C42.9352 23.758 43.0597 23.3121 43.1841 22.8663L43.6819 21.0191H44.1797L43.1841 24.6497H42.6863L42.2508 22.7389C42.1263 22.293 42.0641 21.9109 42.0018 21.5287C41.9396 21.9109 41.8774 22.2293 41.7529 22.7389L41.2552 24.6497H40.6329Z" fill="#7A7A7A"/>
+          <path d="M47.5399 22.7389C47.5399 24.0127 46.7932 24.6497 45.8598 24.6497C44.9264 24.6497 44.242 23.8854 44.242 22.8026C44.242 21.6561 44.9265 20.8917 45.9221 20.8917C46.9177 20.8917 47.5399 21.6561 47.5399 22.7389ZM44.802 22.8026C44.802 23.5669 45.2376 24.2675 45.9221 24.2675C46.6688 24.2675 47.0421 23.5669 47.0421 22.7389C47.0421 22.0382 46.6688 21.2739 45.9221 21.2739C45.1754 21.2739 44.802 22.0382 44.802 22.8026Z" fill="#7A7A7A"/>
+          <path d="M53.5135 21.0191C53.8247 20.9554 54.1358 20.9554 54.5091 20.9554C55.1936 20.9554 55.6292 21.0828 55.9403 21.4013C56.2515 21.7197 56.4381 22.1019 56.4381 22.7389C56.4381 23.3121 56.2515 23.8217 55.9403 24.1401C55.6292 24.4586 55.0692 24.6497 54.3847 24.6497C54.0736 24.6497 53.7624 24.6497 53.5758 24.586V21.0191H53.5135ZM53.9491 24.2675C54.0736 24.2675 54.2603 24.2675 54.3847 24.2675C55.3803 24.2675 55.8781 23.6943 55.8781 22.7389C55.8781 21.8471 55.3803 21.3376 54.4469 21.3376C54.198 21.3376 54.0113 21.3376 53.8869 21.4013V24.2675H53.9491Z" fill="#7A7A7A"/>
+          <path d="M61.9761 20.9554V24.586H61.5405V20.9554H61.9761Z" fill="#7A7A7A"/>
+          <path d="M68.1364 22.9299H66.7675V24.2038H68.3231V24.586H66.3319V20.9554H68.2609V21.3376H66.7675V22.4841H68.1364V22.9299Z" fill="#7A7A7A"/>
+          <path d="M75.3545 22.9299H73.9855V24.2038H75.5412V24.586H73.55V20.9554H75.4789V21.3376H73.9855V22.4841H75.3545V22.9299Z" fill="#7A7A7A"/>
+          <path d="M82.0748 21.4013H81.017V21.0191H83.6304V21.4013H82.5104V24.6497H82.0748V21.4013Z" fill="#7A7A7A"/>
+          <path d="M89.9774 24.5223C89.7907 24.586 89.4796 24.7134 89.044 24.7134C88.0484 24.7134 87.3017 24.0764 87.3017 22.8662C87.3017 21.7197 88.0484 20.9554 89.1684 20.9554C89.604 20.9554 89.9151 21.0828 90.0396 21.1465L89.9151 21.5287C89.7285 21.465 89.4796 21.4013 89.1684 21.4013C88.3595 21.4013 87.7995 21.9745 87.7995 22.9299C87.7995 23.8217 88.2973 24.3949 89.1684 24.3949C89.4796 24.3949 89.7285 24.3312 89.9151 24.2675L89.9774 24.5223Z" fill="#7A7A7A"/>
+          <path d="M93.7731 21.0191C94.022 20.9554 94.3331 20.9554 94.6443 20.9554C95.1421 20.9554 95.4532 21.0191 95.7021 21.2739C95.8888 21.465 96.0132 21.6561 96.0132 21.9745C96.0132 22.4841 95.7021 22.8025 95.3287 22.9299C95.5776 23.0573 95.7643 23.3121 95.8265 23.6943C95.951 24.2038 96.0132 24.586 96.0754 24.7134H95.5776C95.5154 24.586 95.4532 24.2675 95.3287 23.8217C95.2043 23.3121 95.0176 23.121 94.6443 23.121H94.2087V24.7134H93.7731V21.0191ZM94.2709 22.6752H94.7687C95.2665 22.6752 95.5776 22.4204 95.5776 21.9745C95.5776 21.5287 95.2665 21.2739 94.7687 21.2739C94.5198 21.2739 94.3954 21.2739 94.3331 21.3376V22.6752H94.2709Z" fill="#7A7A7A"/>
+          <path d="M98.5022 22.9299H97.071V24.2038H98.6266V24.586H96.6354V20.9554H98.5644V21.3376H97.071V22.4841H98.44V22.9299H98.5022Z" fill="#7A7A7A"/>
+        </svg>
+      </div>
       <div class="header-sep"></div>
       <div class="header-label">
         Distribuidor Oficial de
@@ -296,7 +328,7 @@
   <!-- MAIN -->
   <main>
 
-    <!-- HERO: ORDER CONFIRMED -->
+    <!-- 1. HERO: ORDER CONFIRMED -->
     <div class="hero-card">
       <div class="check-circle">✓</div>
       <h1 class="hero-title">¡Tu pedido fue confirmado!</h1>
@@ -310,7 +342,33 @@
       </div>
     </div>
 
-    <!-- 3 URGENCY TRIGGERS -->
+    <!-- 2. PRODUCT CARD — acima dos gatilhos -->
+    <div class="product-card">
+      <div class="product-img">
+        <!--
+          Tenta: 1) imagem do produto local da pasta products
+                 2) imagem da pasta logo
+                 3) imagem principal da landing page (../assets/img/mob.png)
+        -->
+        <img id="prod-img"
+             src="../assets/img/mob.png"
+             alt="Flexacil Ultra — Suplemento Articular"
+             onerror="this.onerror=null; this.src='assets/images/products/product1.png'; this.onerror=function(){this.src='assets/images/logo/product1.png'};">
+      </div>
+      <div class="product-details">
+        <div class="product-title">Flexacil Ultra</div>
+        <div class="product-subtitle">Suplemento alimenticio natural · 20 cápsulas de 550 mg</div>
+        <div class="clinically-badge">
+          <div class="clinically-icon">✓</div>
+          <div class="clinically-text">
+            La seguridad y efectividad del producto<br>
+            están <strong>clínicamente confirmadas</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. URGENCY TRIGGERS -->
     <div class="steps-wrapper">
       <div class="section-divider">
         <div class="divider-line"></div>
@@ -318,7 +376,7 @@
         <div class="divider-line"></div>
       </div>
 
-      <!-- TRIGGER 1: FIQUE ATENTO AL CELULAR -->
+      <!-- TRIGGER 1: MANTÉN TU CELULAR -->
       <div class="step-card step-card--green">
         <div class="step-icon-box">📱</div>
         <div class="step-content">
@@ -346,7 +404,7 @@
         </div>
       </div>
 
-      <!-- TRIGGER 3: NO PIERDAS ESTA OFERTA (countdown) -->
+      <!-- TRIGGER 3: NO PIERDAS ESTA OFERTA -->
       <div class="step-card step-card--red">
         <div class="step-icon-box">⏰</div>
         <div class="step-content">
@@ -365,29 +423,7 @@
       </div>
     </div>
 
-    <!-- PRODUCT CARD -->
-    <div class="product-card">
-      <div class="product-img">
-        <img src="assets/images/products/product1.png"
-             alt="Flexacil Ultra — Suplemento Articular"
-             onerror="this.src='assets/images/logo/product1.png'">
-      </div>
-      <div class="product-details">
-        <div class="product-title">Flexacil Ultra</div>
-        <div class="product-subtitle">Suplemento alimenticio natural · 20 cápsulas de 550 mg</div>
-        <div class="clinically-badge">
-          <img src="assets/images/labels/confirmed.png"
-               alt="Clínicamente Confirmado"
-               onerror="this.style.display='none'">
-          <div class="clinically-text">
-            La seguridad y efectividad del producto<br>
-            están <strong>clínicamente confirmadas</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRUST SEALS -->
+    <!-- 4. TRUST SEALS -->
     <div class="trust-section">
       <div class="trust-header">Tu compra está 100% protegida</div>
       <div class="trust-grid">
@@ -410,10 +446,20 @@
       </div>
     </div>
 
-    <!-- OFFICIAL DISTRIBUTOR -->
+    <!-- 5. OFFICIAL DISTRIBUTOR -->
     <div class="distributor-banner">
-      <div class="dist-logo">
-        <img src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      <div class="logo-svg">
+        <svg width="72" height="22" viewBox="0 0 99 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.6719 11.9108H23.3344V0H11.6983V6.11465H17.6719V11.9108Z" fill="#FA4D34"/>
+          <path d="M11.6361 11.9745V6.11465H0V18.0892H5.9736V11.9745H11.6361Z" fill="#E6392A"/>
+          <path d="M11.6361 18.0892H5.97361V30H17.6719V23.8854H11.6361V18.0892Z" fill="#FA4D34"/>
+          <path d="M17.6719 18.0892V23.8854H29.308V11.9108H23.3344V18.0892H17.6719Z" fill="#E6392A"/>
+          <path d="M39.4507 16.4331V6.05096H41.6908V14.3949H46.0465V16.4331H39.4507Z" fill="black"/>
+          <path d="M54.9447 16.4331L54.0113 14.2038H49.78L48.8466 16.4331H46.4199L50.8378 6.05096H53.0157L57.4337 16.4331H54.9447ZM51.8957 9.10829L50.5889 12.1019H53.1402L51.8957 9.10829Z" fill="black"/>
+          <path d="M57.9315 16.4331V14.8408L63.2828 8.02549H58.1182V6.05096H66.3319V7.64332L61.0427 14.3949H66.4563V16.4331H57.9315Z" fill="black"/>
+          <path d="M75.6656 16.4331L74.7322 14.2038H70.5009L69.5676 16.4331H67.1408L71.5588 6.05096H73.7366L78.1546 16.4331H75.6656ZM72.6166 9.10829L71.3099 12.1019H73.8611L72.6166 9.10829Z" fill="black"/>
+          <path d="M97.5688 7.38854C98.5644 8.28026 99 9.55415 99 11.1465C99 12.7389 98.5022 14.0127 97.5688 14.9682C96.6354 15.9236 95.2043 16.3694 93.2131 16.3694H89.7285V6.05096H93.3375C95.2043 6.05096 96.6354 6.49682 97.5688 7.38854ZM95.951 13.5669C96.511 13.0573 96.7599 12.2293 96.7599 11.2102C96.7599 10.1911 96.511 9.42676 95.951 8.85351C95.3909 8.28026 94.5198 8.02549 93.3997 8.02549H92.1552V14.3312H93.5864C94.582 14.3949 95.3909 14.1401 95.951 13.5669Z" fill="black"/>
+        </svg>
       </div>
       <div class="dist-sep"></div>
       <div class="dist-text">
@@ -427,7 +473,19 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <img class="footer-logo-img" src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      <div class="logo-svg">
+        <svg width="68" height="20" viewBox="0 0 99 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.6719 11.9108H23.3344V0H11.6983V6.11465H17.6719V11.9108Z" fill="#FA4D34"/>
+          <path d="M11.6361 11.9745V6.11465H0V18.0892H5.9736V11.9745H11.6361Z" fill="#E6392A"/>
+          <path d="M11.6361 18.0892H5.97361V30H17.6719V23.8854H11.6361V18.0892Z" fill="#FA4D34"/>
+          <path d="M17.6719 18.0892V23.8854H29.308V11.9108H23.3344V18.0892H17.6719Z" fill="#E6392A"/>
+          <path d="M39.4507 16.4331V6.05096H41.6908V14.3949H46.0465V16.4331H39.4507Z" fill="black"/>
+          <path d="M54.9447 16.4331L54.0113 14.2038H49.78L48.8466 16.4331H46.4199L50.8378 6.05096H53.0157L57.4337 16.4331H54.9447ZM51.8957 9.10829L50.5889 12.1019H53.1402L51.8957 9.10829Z" fill="black"/>
+          <path d="M57.9315 16.4331V14.8408L63.2828 8.02549H58.1182V6.05096H66.3319V7.64332L61.0427 14.3949H66.4563V16.4331H57.9315Z" fill="black"/>
+          <path d="M75.6656 16.4331L74.7322 14.2038H70.5009L69.5676 16.4331H67.1408L71.5588 6.05096H73.7366L78.1546 16.4331H75.6656ZM72.6166 9.10829L71.3099 12.1019H73.8611L72.6166 9.10829Z" fill="black"/>
+          <path d="M97.5688 7.38854C98.5644 8.28026 99 9.55415 99 11.1465C99 12.7389 98.5022 14.0127 97.5688 14.9682C96.6354 15.9236 95.2043 16.3694 93.2131 16.3694H89.7285V6.05096H93.3375C95.2043 6.05096 96.6354 6.49682 97.5688 7.38854ZM95.951 13.5669C96.511 13.0573 96.7599 12.2293 96.7599 11.2102C96.7599 10.1911 96.511 9.42676 95.951 8.85351C95.3909 8.28026 94.5198 8.02549 93.3997 8.02549H92.1552V14.3312H93.5864C94.582 14.3949 95.3909 14.1401 95.951 13.5669Z" fill="black"/>
+        </svg>
+      </div>
       <div class="footer-sep"></div>
       <div class="footer-info">
         Lazard inc. Grenzacherstrasse 124, floor 9-16, 4058 Basel, Switzerland<br>
