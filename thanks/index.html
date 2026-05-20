@@ -14,6 +14,18 @@
     <!-- build:css assets/css/style.min.css-->
     <link rel="stylesheet" href="assets/css/fonts.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      /* Fix Bootstrap .label conflict */
+      img.label { display: inline-block !important; visibility: visible !important; opacity: 1 !important; }
+      /* Fix SVG logo size */
+      .logo__img { width: 80px; height: auto; display: inline-block !important; }
+      /* Fix order icon size */
+      .order-is-issued__img { width: 36px; height: 36px; display: inline-block !important; }
+      /* Fix label images */
+      .label_img { width: 60px; height: auto; display: inline-block !important; }
+      /* Fix current product image */
+      .current-product__img { max-width: 150px; height: auto; display: block; }
+    </style>
     <!-- endbuild -->
     <!-- end css styles -->
     <!-- INTH_SNIPPET_TOP -->
@@ -24,7 +36,7 @@
       <header class="header">
         <div class="container">
           <div class="d-flex align-items-center">
-            <div class="logo header-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo"></a></div>
+            <div class="logo header-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo" style="width:80px;height:auto;display:inline-block"></a></div>
             <p class="header__text m-0">Official distributor of <span class="current-product__name">Flexacil </span><span class="country"></span></p>
           </div>
         </div>
@@ -37,7 +49,7 @@
               <div class="col-md-6 float-md-left pr-md-2">
                 <div class="order-info__content order-info__content_light_green mb-sm-3 mb-2">
                   <div class="order-info__info-line">
-                    <div class="d-flex align-items-center"><img class="order-is-issued__img" src="assets/images/icons/order_green.svg" alt="order">
+                    <div class="d-flex align-items-center"><img class="order-is-issued__img" src="assets/images/icons/order_green.svg" alt="order" style="width:36px;height:36px;display:inline-block">
                       <p class="order-info__title m-0">Thank you for placing an order!</p>
                     </div>
                   </div>
@@ -52,17 +64,17 @@
                         <p class="order-id">Your order number is <span class="order-id__value">8875991-ID</span></p>
                         <p class="current-product__text"><span class="current-product__name">Flexacil</span></p>
                         <p class="current-product__description m-0"></p>
-                      </div><img class="current-product__img" src="https://static.statthroat.tech/offers/d71d651a-d2ed-4821-b3c7-a63fa18b5caa.png" alt="product">
+                      </div><img class="current-product__img" src="assets/images/logo/product1.png" alt="product" style="max-width:150px;height:auto" onerror="this.src='assets/images/logo/product2.png'">
                     </div>
                   </div>
                   
                   <div class="order-product__item product-guarantee">
-                    <div class="d-flex align-items-center"><img class="label label_img guarantee-label_img" src="assets/images/labels/guarantee.png" alt="guarantee">
+                    <div class="d-flex align-items-center"><img class="label_img guarantee-label_img" src="assets/images/labels/guarantee.png" alt="guarantee" style="width:60px;height:auto;display:inline-block;margin:0 34px 0 0">
                       <p class="product-guarantee_text">100% satisfaction guarantee or your money back during 365 days</p>
                     </div>
                   </div>
                   <div class="order-product__item product-confirmed">
-                    <div class="d-flex align-items-center"><img class="label label_img" src="assets/images/labels/confirmed.png" alt="confirmed">
+                    <div class="d-flex align-items-center"><img class="label_img" src="assets/images/labels/confirmed.png" alt="confirmed" style="width:60px;height:auto;display:inline-block;margin:0 34px 0 0">
                       <p class="product-confirmed_text">Product safety and effectiveness are clinically confirmed</p>
                     </div>
                   </div>
@@ -78,7 +90,7 @@
         <div class="container">
           <div class="d-flex align-items-center">
             <div class="company-about__content">
-              <div class="logo footer-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo"></a></div>
+              <div class="logo footer-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo" style="width:80px;height:auto;display:inline-block"></a></div>
             </div>
             <div class="footer-contacts__content">
               <div class="d-flex justify-content-between flex-xl-row flex-column">
