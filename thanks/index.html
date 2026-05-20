@@ -1,115 +1,463 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <title>LAZARD worldwide healthcare | Thank you for placing an order!!</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- css styles -->
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/livingston-css3-mediaqueries-js/1.0.0/css3-mediaqueries.min.js"></script><![endif]-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.9.0/css/flag-icon.min.css">
-    <!-- build:css assets/css/style.min.css-->
-    <link rel="stylesheet" href="assets/css/fonts.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-      /* Fix Bootstrap .label conflict */
-      img.label { display: inline-block !important; visibility: visible !important; opacity: 1 !important; }
-      /* Fix SVG logo size */
-      .logo__img { width: 80px; height: auto; display: inline-block !important; }
-      /* Fix order icon size */
-      .order-is-issued__img { width: 36px; height: 36px; display: inline-block !important; }
-      /* Fix label images */
-      .label_img { width: 60px; height: auto; display: inline-block !important; }
-      /* Fix current product image */
-      .current-product__img { max-width: 150px; height: auto; display: block; }
-    </style>
-    <!-- endbuild -->
-    <!-- end css styles -->
-    <!-- INTH_SNIPPET_TOP -->
-  </head>
-  <body>
-    <div class="d-flex flex-column justify-content-between h-100">
-      <!-- header-->
-      <header class="header">
-        <div class="container">
-          <div class="d-flex align-items-center">
-            <div class="logo header-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo" style="width:80px;height:auto;display:inline-block"></a></div>
-            <p class="header__text m-0">Official distributor of <span class="current-product__name">Flexacil </span><span class="country"></span></p>
-          </div>
-        </div>
-      </header>
-      <!-- main-->
-      <main class="main">
-        <div class="container">
-          <div class="row">
-            <div class="order__content clearfix">
-              <div class="col-md-6 float-md-left pr-md-2">
-                <div class="order-info__content order-info__content_light_green mb-sm-3 mb-2">
-                  <div class="order-info__info-line">
-                    <div class="d-flex align-items-center"><img class="order-is-issued__img" src="assets/images/icons/order_green.svg" alt="order" style="width:36px;height:36px;display:inline-block">
-                      <p class="order-info__title m-0">Thank you for placing an order!</p>
-                    </div>
-                  </div>
-                  <p class="order-info__text m-0"> <span class="current-product__name font-weight-bold">Flexacil</span>&nbsp;product specialist will contact you soon to answer your questions and clarify delivery details.</p>
-                </div>
-              </div>
-              <div class="col-md-6 float-md-right pl-md-2">
-                <div class="order-product__content mb-3">
-                  <div class="order-product__item current-product">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="order-product-spec-wrap">
-                        <p class="order-id">Your order number is <span class="order-id__value">8875991-ID</span></p>
-                        <p class="current-product__text"><span class="current-product__name">Flexacil</span></p>
-                        <p class="current-product__description m-0"></p>
-                      </div><img class="current-product__img" src="assets/images/logo/product1.png" alt="product" style="max-width:150px;height:auto" onerror="this.src='assets/images/logo/product2.png'">
-                    </div>
-                  </div>
-                  
-                  <div class="order-product__item product-guarantee">
-                    <div class="d-flex align-items-center"><img class="label_img guarantee-label_img" src="assets/images/labels/guarantee.png" alt="guarantee" style="width:60px;height:auto;display:inline-block;margin:0 34px 0 0">
-                      <p class="product-guarantee_text">100% satisfaction guarantee or your money back during 365 days</p>
-                    </div>
-                  </div>
-                  <div class="order-product__item product-confirmed">
-                    <div class="d-flex align-items-center"><img class="label_img" src="assets/images/labels/confirmed.png" alt="confirmed" style="width:60px;height:auto;display:inline-block;margin:0 34px 0 0">
-                      <p class="product-confirmed_text">Product safety and effectiveness are clinically confirmed</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </main>
-      <!-- footer-->
-      <footer class="footer">
-        <div class="container">
-          <div class="d-flex align-items-center">
-            <div class="company-about__content">
-              <div class="logo footer-logo"><a href="#"><img class="logo__img" src="assets/images/logo/logo.svg" alt="logo" style="width:80px;height:auto;display:inline-block"></a></div>
-            </div>
-            <div class="footer-contacts__content">
-              <div class="d-flex justify-content-between flex-xl-row flex-column">
-                <p class="footer_address__text m-0">Lazard inc. Grenzacherstrasse 124, floor 9-16 4058 Basel, Switzerland</p>
-                <p class="footer-phone__text m-0">Phone: &nbsp;<a class="footer-phone__link" href="tel:+62215727585">+62 21 5727585</a></p><a class="footer-url__link" href="lazardhealthcare.com" target="_blank">lazardhealthcare.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>¡Pedido Confirmado! | Flexacil Ultra Chile</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #eef2ee;
+      color: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ─────────────────────────────── */
+    .header {
+      background: #fff;
+      border-bottom: 3px solid #1BB500;
+      padding: 13px 24px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .logo-img { width: 88px; height: auto; display: block; }
+    .header-sep { width: 1px; height: 34px; background: #e0e0e0; flex-shrink: 0; }
+    .header-label { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.8px; line-height: 1.5; }
+    .header-label strong { color: #1BB500; font-size: 13px; display: block; }
+
+    /* ── MAIN ────────────────────────────────── */
+    main {
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    /* ── HERO CARD ───────────────────────────── */
+    .hero-card {
+      background: linear-gradient(135deg, #1BB500 0%, #0d8600 100%);
+      border-radius: 24px;
+      padding: 42px 32px 36px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 22px;
+      box-shadow: 0 14px 48px rgba(27,181,0,0.32);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 260px; height: 260px;
+      background: rgba(255,255,255,0.06); border-radius: 50%;
+    }
+    .hero-card::after {
+      content: ''; position: absolute; bottom: -60px; left: -60px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.04); border-radius: 50%;
+    }
+    .check-circle {
+      width: 82px; height: 82px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 42px;
+      position: relative; z-index: 1;
+      animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .hero-title {
+      font-size: 30px; font-weight: 900;
+      letter-spacing: -0.5px; margin-bottom: 10px;
+      position: relative; z-index: 1;
+    }
+    .hero-subtitle {
+      font-size: 15px; line-height: 1.65;
+      opacity: 0.92; max-width: 500px;
+      margin: 0 auto 26px;
+      position: relative; z-index: 1;
+    }
+    .order-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.38);
+      border-radius: 50px;
+      padding: 10px 26px;
+      font-size: 13px;
+      position: relative; z-index: 1;
+    }
+    .order-pill-label { opacity: 0.85; font-weight: 600; }
+    .order-pill-number { font-size: 17px; font-weight: 900; letter-spacing: 1.5px; }
+
+    /* ── STEPS SECTION ───────────────────────── */
+    .steps-wrapper { margin-bottom: 22px; }
+    .section-divider {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .divider-line { flex: 1; height: 1px; background: #d4e0d4; }
+    .divider-text {
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: #aaa; white-space: nowrap;
+    }
+
+    .step-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px 22px 22px 20px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-left: 5px solid transparent;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .step-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-2px); }
+    .step-card:last-child { margin-bottom: 0; }
+
+    .step-card--green { border-left-color: #1BB500; }
+    .step-card--blue  { border-left-color: #1a56db; }
+    .step-card--red   { border-left-color: #e02424; }
+
+    .step-icon-box {
+      width: 58px; height: 58px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; flex-shrink: 0;
+    }
+    .step-card--green .step-icon-box { background: #e2f8da; }
+    .step-card--blue  .step-icon-box { background: #ddeeff; }
+    .step-card--red   .step-icon-box { background: #ffe4e4; }
+
+    .step-content { flex: 1; min-width: 0; }
+    .step-tag {
+      font-size: 10px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 5px;
+    }
+    .step-card--green .step-tag { color: #1BB500; }
+    .step-card--blue  .step-tag { color: #1a56db; }
+    .step-card--red   .step-tag { color: #e02424; }
+
+    .step-title {
+      font-size: 17px; font-weight: 900;
+      color: #111; margin-bottom: 7px; line-height: 1.3;
+    }
+    .step-body { font-size: 13.5px; color: #666; line-height: 1.6; }
+    .step-body strong { color: #333; }
+
+    .countdown-widget {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 14px;
+      background: #fff5f5;
+      border: 2px solid #e02424;
+      border-radius: 12px;
+      padding: 9px 18px;
+      animation: pulse-border 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(224,36,36,0.3); }
+      50%       { box-shadow: 0 0 0 6px rgba(224,36,36,0); }
+    }
+    .countdown-label-text { font-size: 12px; font-weight: 700; color: #e02424; }
+    #timer {
+      font-size: 24px; font-weight: 900;
+      color: #e02424;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1px; min-width: 58px;
+    }
+
+    /* ── PRODUCT CARD ────────────────────────── */
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+    .product-img img {
+      width: 130px; height: auto; display: block;
+      border-radius: 12px; object-fit: contain;
+    }
+    .product-details { flex: 1; }
+    .product-title { font-size: 21px; font-weight: 900; color: #111; margin-bottom: 4px; }
+    .product-subtitle { font-size: 13px; color: #999; margin-bottom: 18px; }
+    .clinically-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: #f0f6ff;
+      border: 1.5px solid #1a56db;
+      border-radius: 12px;
+      padding: 11px 14px;
+    }
+    .clinically-badge img { width: 38px; height: auto; flex-shrink: 0; display: block; }
+    .clinically-text { font-size: 12px; font-weight: 700; color: #1a56db; line-height: 1.5; }
+    .clinically-text strong { color: #0a3db5; }
+
+    /* ── TRUST SEALS ─────────────────────────── */
+    .trust-section { margin-bottom: 20px; }
+    .trust-header {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: #bbb; margin-bottom: 14px;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .trust-badge {
+      background: #fff; border-radius: 14px; padding: 16px 10px;
+      text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .trust-badge:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    .trust-badge-icon { font-size: 28px; margin-bottom: 7px; }
+    .trust-badge-text { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #555; line-height: 1.4; }
+
+    /* ── DISTRIBUTOR BANNER ───────────────────── */
+    .distributor-banner {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px 22px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1.5px solid #e8e8e8;
+    }
+    .dist-logo img { width: 70px; height: auto; }
+    .dist-sep { width: 1px; height: 30px; background: #ddd; }
+    .dist-text { font-size: 12px; color: #888; font-weight: 600; }
+    .dist-text strong { color: #1BB500; font-size: 14px; display: block; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    .footer {
+      background: #fff;
+      border-top: 1px solid #e8e8e8;
+      padding: 18px 24px;
+    }
+    .footer-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    }
+    .footer-logo-img { width: 70px; height: auto; display: block; }
+    .footer-sep { width: 1px; height: 28px; background: #ddd; flex-shrink: 0; }
+    .footer-info { font-size: 11px; color: #aaa; line-height: 1.7; }
+    .footer-info a { color: #aaa; text-decoration: none; }
+    .footer-info a:hover { color: #1BB500; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 620px) {
+      .hero-title { font-size: 23px; }
+      .hero-card { padding: 30px 18px 28px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-card { flex-direction: column; text-align: center; }
+      .clinically-badge { justify-content: center; text-align: left; }
+      .distributor-banner { flex-wrap: wrap; justify-content: center; text-align: center; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-sep { width: 100%; height: 1px; }
+      .footer-info { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <img class="logo-img" src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      <div class="header-sep"></div>
+      <div class="header-label">
+        Distribuidor Oficial de
+        <strong>FLEXACIL en Chile</strong>
+      </div>
     </div>
-    <!-- js scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- build:js assets/js/main.min.js -->
-    <script src="assets/js/main.js"></script>
-    <!-- endbuild -->
-    <!-- end js scripts-->
-    <!-- INTH_SNIPPET_BOTTOM -->
-  </body>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO: ORDER CONFIRMED -->
+    <div class="hero-card">
+      <div class="check-circle">✓</div>
+      <h1 class="hero-title">¡Tu pedido fue confirmado!</h1>
+      <p class="hero-subtitle">
+        ¡Muchas gracias por confiar en Flexacil Ultra!<br>
+        Un especialista de nuestro equipo te contactará muy pronto para confirmar tu entrega a domicilio.
+      </p>
+      <div class="order-pill">
+        <span class="order-pill-label">N° de Pedido:</span>
+        <span class="order-pill-number order-number">—</span>
+      </div>
+    </div>
+
+    <!-- 3 URGENCY TRIGGERS -->
+    <div class="steps-wrapper">
+      <div class="section-divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">⚠ Próximos Pasos — Lee con Atención</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- TRIGGER 1: FIQUE ATENTO AL CELULAR -->
+      <div class="step-card step-card--green">
+        <div class="step-icon-box">📱</div>
+        <div class="step-content">
+          <div class="step-tag">Paso 1 — Muy Importante</div>
+          <div class="step-title">¡MANTÉN TU CELULAR A LA MANO!</div>
+          <div class="step-body">
+            Asegúrate de tener tu teléfono <strong>encendido, con batería y señal</strong>.
+            Nuestro equipo de especialistas te llamará desde un número chileno para confirmar tu pedido.
+            No dejes el celular en silencio — ¡esa llamada es clave para que recibas tu producto!
+          </div>
+        </div>
+      </div>
+
+      <!-- TRIGGER 2: ATIENDE NUESTRAS LLAMADAS -->
+      <div class="step-card step-card--blue">
+        <div class="step-icon-box">📞</div>
+        <div class="step-content">
+          <div class="step-tag">Paso 2 — Acción Requerida</div>
+          <div class="step-title">¡ATIENDE NUESTRAS LLAMADAS!</div>
+          <div class="step-body">
+            Es fundamental que <strong>respondas cuando te llamemos</strong>.
+            Confirmaremos tu dirección de despacho y coordinaremos la entrega de Flexacil Ultra directamente en tu domicilio.
+            Si no contestas, <strong>tu pedido podría ser cancelado</strong> y perderías el precio especial.
+          </div>
+        </div>
+      </div>
+
+      <!-- TRIGGER 3: NO PIERDAS ESTA OFERTA (countdown) -->
+      <div class="step-card step-card--red">
+        <div class="step-icon-box">⏰</div>
+        <div class="step-content">
+          <div class="step-tag">¡Urgente! — Tu Oferta Está Activa</div>
+          <div class="step-title">¡NO PIERDAS ESTA OFERTA DE NINGUNA MANERA!</div>
+          <div class="step-body">
+            Tu precio especial con <strong>50% de descuento</strong> está reservado exclusivamente para ti.
+            Dentro de <strong>30 minutos</strong> estaremos entrando en contacto contigo para confirmar tu pedido.
+            ¡No pierdas esta oportunidad única — responde siempre nuestra llamada!
+          </div>
+          <div class="countdown-widget">
+            <span class="countdown-label-text">⏱ Te llamamos en:</span>
+            <span id="timer">30:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT CARD -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="assets/images/products/product1.png"
+             alt="Flexacil Ultra — Suplemento Articular"
+             onerror="this.src='assets/images/logo/product1.png'">
+      </div>
+      <div class="product-details">
+        <div class="product-title">Flexacil Ultra</div>
+        <div class="product-subtitle">Suplemento alimenticio natural · 20 cápsulas de 550 mg</div>
+        <div class="clinically-badge">
+          <img src="assets/images/labels/confirmed.png"
+               alt="Clínicamente Confirmado"
+               onerror="this.style.display='none'">
+          <div class="clinically-text">
+            La seguridad y efectividad del producto<br>
+            están <strong>clínicamente confirmadas</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST SEALS -->
+    <div class="trust-section">
+      <div class="trust-header">Tu compra está 100% protegida</div>
+      <div class="trust-grid">
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🔒</div>
+          <div class="trust-badge-text">Compra<br>Segura</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🛡️</div>
+          <div class="trust-badge-text">Datos<br>Protegidos</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">✅</div>
+          <div class="trust-badge-text">Producto<br>Verificado</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🚚</div>
+          <div class="trust-badge-text">Despacho a<br>Todo Chile</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OFFICIAL DISTRIBUTOR -->
+    <div class="distributor-banner">
+      <div class="dist-logo">
+        <img src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      </div>
+      <div class="dist-sep"></div>
+      <div class="dist-text">
+        <strong>Distribuidor Oficial de FLEXACIL</strong>
+        Lazard inc. · Operación certificada en Chile
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img class="footer-logo-img" src="assets/images/logo/logo.svg" alt="Lazard Healthcare">
+      <div class="footer-sep"></div>
+      <div class="footer-info">
+        Lazard inc. Grenzacherstrasse 124, floor 9-16, 4058 Basel, Switzerland<br>
+        Teléfono: +62 21 5727585 ·
+        <a href="https://lazardhealthcare.com" target="_blank" rel="noopener">lazardhealthcare.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Número de pedido aleatório ──────────────
+    (function () {
+      var n = Math.floor(Math.random() * 9000000) + 1000000;
+      document.querySelector('.order-number').textContent = n + '-ID';
+    })();
+
+    // ── Countdown 30 minutos ────────────────────
+    (function () {
+      var secs = 30 * 60;
+      var el = document.getElementById('timer');
+      function tick() {
+        var m = Math.floor(secs / 60);
+        var s = secs % 60;
+        el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        if (secs > 0) { secs--; setTimeout(tick, 1000); }
+        else { el.textContent = '00:00'; el.style.color = '#999'; }
+      }
+      tick();
+    })();
+  </script>
+
+</body>
 </html>
- 
