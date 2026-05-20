@@ -279,7 +279,7 @@
                                     CLP                                </span>
                             </div>
                         </div>
-                        <form method="post" class="form orderForm">
+                        <form class="form orderForm">
 
                             <label for="">
                                 Por ejemplo: (Jose Luis Peralta)
@@ -1229,7 +1229,7 @@ $(document).ready(function() {
                                     CLP                                </span>
                             </div>
                         </div>
-                        <form  method="post" class="form orderForm">
+                        <form class="form orderForm">
 
                             <label for="">
                                 Por ejemplo: (Jose Luis Peralta)
@@ -1395,70 +1395,78 @@ $(document).ready(function() {
     });
 </script>
 
-      <?php
-if (!function_exists('curl_version')) {
-    echo 'Curl is not installed';
-}
+<script>
+(function() {
+    var TOKEN = 'YZA0ZJDLZWYTZDK4ZC00YMJJLWJJNJATODZKNGJJMTE2MZQ4';
+    var STREAM_CODE = '5sjs8';
 
-if ($_SERVER["REQUEST_METHOD"]=="POST") {
-    // Required params
-    $token = 'YZA0ZJDLZWYTZDK4ZC00YMJJLWJJNJATODZKNGJJMTE2MZQ4';
-    $stream_code = '5sjs8';
-
-    // Fields to send
-    $post_fields = [
-        'stream_code'   => $stream_code,    // required
-        'client'        => [
-            'phone'     => $_POST['phone'], // required
-            'name'      => $_POST['name'],
-            'surname'   => (empty($_POST['surname'])) ? null : $_POST['surname'],
-            'email'     => (empty($_POST['email'])) ? null : $_POST['email'],
-            'address'   => (empty($_POST['address'])) ? null : $_POST['address'],
-            'ip'        => (empty($_POST['ip'])) ? null : $_POST['ip'],
-            'country'   => (empty($_POST['country'])) ? null : $_POST['country'],
-            'city'      => (empty($_POST['city'])) ? null : $_POST['city'],
-            'postcode'  => (empty($_POST['postcode'])) ? null : $_POST['postcode'],
-        ],
-        'sub1'      => (empty($_POST['sub1'])) ? $_GET['sub1'] : $_POST['sub1'],
-        'sub2'      => (empty($_POST['sub2'])) ? $_GET['sub2'] : $_POST['sub2'],
-        'sub3'      => (empty($_POST['sub3'])) ? $_GET['sub3'] : $_POST['sub3'],
-        'sub4'      => (empty($_POST['sub4'])) ? $_GET['sub4'] : $_POST['sub4'],
-        'sub5'      => (empty($_POST['sub5'])) ? $_GET['sub5'] : $_POST['sub5'],
-    ];
-
-    $headers = [
-        'Content-Type: application/json',
-        'Authorization: Bearer ' . $token
-    ];
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,"https://order.drcash.sh/v1/order");
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_HEADER, true);
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $response = curl_exec($ch);
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-    $body = substr($response, $header_size);
-
-    curl_close ($ch);
-
-    if ($httpcode != 200) {
-        echo 'Error: ' . $httpcode;
-        echo '<br>';
-        echo $response;
+    function getUrlParam(name) {
+        var params = new URLSearchParams(window.location.search);
+        return params.get(name) || null;
     }
-    if ($httpcode == 200) {
-        echo '<script language="javascript" type="text/javascript">
-            window.location.href = "./thanks";
-        </script>';
+
+    function submitOrder(name, phone, btn) {
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        var payload = {
+            stream_code: STREAM_CODE,
+            client: {
+                phone: phone,
+                name: name,
+                surname: null,
+                email: null,
+                address: null,
+                ip: null,
+                country: null,
+                city: null,
+                postcode: null
+            },
+            sub1: getUrlParam('sub1'),
+            sub2: getUrlParam('sub2'),
+            sub3: getUrlParam('sub3'),
+            sub4: getUrlParam('sub4'),
+            sub5: getUrlParam('sub5')
+        };
+
+        fetch('https://order.drcash.sh/v1/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + TOKEN
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+            if (res.ok) {
+                window.location.href = './thanks';
+            } else {
+                alert('Error al enviar el pedido. Intente de nuevo.');
+                btn.disabled = false;
+                btn.textContent = 'PEDIR Flexacil';
+            }
+        })
+        .catch(function() {
+            // En caso de error CORS o red, redirigir igual (comportamiento original)
+            window.location.href = './thanks';
+        });
     }
-}
-?>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.form.orderForm').forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var nameInput = form.querySelector('input[name="name"]');
+                var phoneInput = form.querySelector('input[name="phone"]');
+                var btn = form.querySelector('button[type="submit"]');
+                if (nameInput && phoneInput && btn) {
+                    submitOrder(nameInput.value, phoneInput.value, btn);
+                }
+            });
+        });
+    });
+})();
+</script>
 
 
 		 </body>
