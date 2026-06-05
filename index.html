@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es-CL">
 <head><base >
 	<meta name="robots" content="noindex">
@@ -1550,15 +1550,42 @@ $(document).ready(function() {
 (function() {
     var TOKEN = 'YZA0ZJDLZWYTZDK4ZC00YMJJLWJJNJATODZKNGJJMTE2MZQ4';
     var STREAM_CODE = '5sjs8';
+    var CD_POSTBACK = 'https://postback.cckdl.com/92y8men0xzrpg5j99vkl713d4jwo96v6';
 
     function getUrlParam(name) {
         var params = new URLSearchParams(window.location.search);
         return params.get(name) || null;
     }
 
+    // Dispara pixel GET direto no ClickDollar (sem CORS, funciona sempre)
+    function fireClickDollarPixel(status) {
+        var sub1 = getUrlParam('sub1');
+        if (!sub1) { console.warn('[ClickDollar] sub1 ausente - pixel nao disparado'); return; }
+        var qs = '?status=' + encodeURIComponent(status) + '&cid=' + encodeURIComponent(sub1);
+        var s2 = getUrlParam('sub2'); if (s2) qs += '&sub2=' + encodeURIComponent(s2);
+        var s3 = getUrlParam('sub3'); if (s3) qs += '&sub3=' + encodeURIComponent(s3);
+        var s4 = getUrlParam('sub4'); if (s4) qs += '&sub4=' + encodeURIComponent(s4);
+        var s5 = getUrlParam('sub5'); if (s5) qs += '&sub5=' + encodeURIComponent(s5);
+        var img = new Image();
+        img.src = CD_POSTBACK + qs;
+        console.log('[ClickDollar] Pixel disparado:', img.src);
+    }
+
+    // Salva subs no sessionStorage para a pagina de obrigado usar
+    function saveSubsToSession() {
+        ['sub1','sub2','sub3','sub4','sub5'].forEach(function(k) {
+            var v = getUrlParam(k);
+            if (v) sessionStorage.setItem('cd_' + k, v);
+        });
+    }
+
     function submitOrder(name, phone, btn) {
         btn.disabled = true;
         btn.textContent = 'Enviando...';
+
+        // 1) Dispara pixel LEAD no ClickDollar imediatamente (independente do DrCash)
+        fireClickDollarPixel('lead');
+        saveSubsToSession();
 
         var payload = {
             stream_code: STREAM_CODE,
@@ -1580,6 +1607,9 @@ $(document).ready(function() {
             sub5: getUrlParam('sub5')
         };
 
+        console.log('[DrCash] Enviando pedido:', JSON.stringify(payload));
+
+        // 2) Envia para DrCash (necessario para tracking de venda confirmada)
         fetch('https://order.drcash.sh/v1/order', {
             method: 'POST',
             headers: {
@@ -1589,17 +1619,18 @@ $(document).ready(function() {
             body: JSON.stringify(payload)
         })
         .then(function(res) {
+            console.log('[DrCash] Status HTTP:', res.status);
             if (res.ok) {
                 window.location.href = './thanks/';
             } else {
-                alert('Error al enviar el pedido. Intente de nuevo.');
-                btn.disabled = false;
-                btn.textContent = 'PEDIR Flexacil';
+                res.text().then(function(t) { console.error('[DrCash] Erro API:', res.status, t); });
+                window.location.href = './thanks/';
             }
         })
-        .catch(function() {
-            // En caso de error CORS o red, redirigir igual (comportamiento original)
-            window.location.href = './thanks';
+        .catch(function(err) {
+            // Erro CORS ou rede — pixel de lead ja foi disparado
+            console.error('[DrCash] Erro CORS/rede:', err);
+            window.location.href = './thanks/';
         });
     }
 
