@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es-CL">
 <head><base >
 	<meta name="robots" content="noindex">
@@ -1549,104 +1549,80 @@ $(document).ready(function() {
 
 <script>
 (function() {
-    var TOKEN = 'YZA0ZJDLZWYTZDK4ZC00YMJJLWJJNJATODZKNGJJMTE2MZQ4';
-    var STREAM_CODE = '5sjs8';
-    var CD_POSTBACK = 'https://postback.cckdl.com/92y8men0xzrpg5j99vkl713d4jwo96v6';
-
-    function getUrlParam(name) {
-        var params = new URLSearchParams(window.location.search);
-        return params.get(name) || null;
+    // ── Lê parâmetros da URL ───────────────────────────────────────────────
+    function getParam(name) {
+        return new URLSearchParams(window.location.search).get(name) || '';
     }
 
-    // Dispara pixel GET direto no ClickDollar (sem CORS, funciona sempre)
-    function fireClickDollarPixel(status) {
-        var sub1 = getUrlParam('sub1');
-        if (!sub1) { console.warn('[ClickDollar] sub1 ausente - pixel nao disparado'); return; }
-        var qs = '?status=' + encodeURIComponent(status) + '&cid=' + encodeURIComponent(sub1);
-        var s2 = getUrlParam('sub2'); if (s2) qs += '&sub2=' + encodeURIComponent(s2);
-        var s3 = getUrlParam('sub3'); if (s3) qs += '&sub3=' + encodeURIComponent(s3);
-        var s4 = getUrlParam('sub4'); if (s4) qs += '&sub4=' + encodeURIComponent(s4);
-        var s5 = getUrlParam('sub5'); if (s5) qs += '&sub5=' + encodeURIComponent(s5);
-        var img = new Image();
-        img.src = CD_POSTBACK + qs;
-        console.log('[ClickDollar] Pixel disparado:', img.src);
-    }
-
-    // Salva subs no sessionStorage para a pagina de obrigado usar
-    function saveSubsToSession() {
-        ['sub1','sub2','sub3','sub4','sub5'].forEach(function(k) {
-            var v = getUrlParam(k);
-            if (v) sessionStorage.setItem('cd_' + k, v);
+    // ── Injeta hidden inputs com sub1-sub5 e gclid em cada formulário ─────
+    function injectHiddenInputs(form) {
+        ['sub1','sub2','sub3','sub4','sub5','gclid'].forEach(function(k) {
+            var v = getParam(k);
+            var inp = document.createElement('input');
+            inp.type  = 'hidden';
+            inp.name  = k;
+            inp.value = v;
+            form.appendChild(inp);
         });
     }
 
-    function submitOrder(name, phone, btn) {
-        btn.disabled = true;
-        btn.textContent = 'Enviando...';
-
-        // 1) Dispara pixel LEAD no ClickDollar imediatamente (independente do DrCash)
-        fireClickDollarPixel('lead');
-        saveSubsToSession();
-
-        var payload = {
-            stream_code: STREAM_CODE,
-            client: {
-                phone: phone,
-                name: name,
-                surname: null,
-                email: null,
-                address: null,
-                ip: null,
-                country: null,
-                city: null,
-                postcode: null
-            },
-            sub1: getUrlParam('sub1'),
-            sub2: getUrlParam('sub2'),
-            sub3: getUrlParam('sub3'),
-            sub4: getUrlParam('sub4'),
-            sub5: getUrlParam('sub5')
-        };
-
-        console.log('[DrCash] Enviando pedido:', JSON.stringify(payload));
-
-        // 2) Envia para DrCash (necessario para tracking de venda confirmada)
-        fetch('https://order.drcash.sh/v1/order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + TOKEN
-            },
-            body: JSON.stringify(payload)
-        })
-        .then(function(res) {
-            console.log('[DrCash] Status HTTP:', res.status);
-            if (res.ok) {
-                window.location.href = './thanks/';
-            } else {
-                res.text().then(function(t) { console.error('[DrCash] Erro API:', res.status, t); });
-                window.location.href = './thanks/';
-            }
-        })
-        .catch(function(err) {
-            // Erro CORS ou rede — pixel de lead ja foi disparado
-            console.error('[DrCash] Erro CORS/rede:', err);
-            window.location.href = './thanks/';
-        });
+    // ── Normaliza telefone chileno no JS (validação antecipada) ───────────
+    function normalizePhone(raw) {
+        var s = raw.replace(/[^\d+]/g, '');
+        if (s.startsWith('+')) s = s.slice(1);
+        if (s.startsWith('00')) s = s.slice(2);
+        if (s.startsWith('56')) { /* ok */ }
+        else if (s.startsWith('09')) { s = '56' + s.slice(1); }
+        else if (s.startsWith('9'))  { s = '56' + s; }
+        else { return null; }
+        return /^569\d{8}$/.test(s) ? '+' + s : null;
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.form.orderForm').forEach(function(form) {
+        var forms = document.querySelectorAll('.form.orderForm');
+
+        forms.forEach(function(form) {
+            // Aponta para a Vercel Serverless Function
+            form.setAttribute('action', '/api/send');
+            form.setAttribute('method', 'post');
+
+            // Injeta hidden inputs com subs e gclid
+            injectHiddenInputs(form);
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                var nameInput = form.querySelector('input[name="name"]');
+
+                var nameInput  = form.querySelector('input[name="name"]');
                 var phoneInput = form.querySelector('input[name="phone"]');
-                var btn = form.querySelector('button[type="submit"]');
-                if (nameInput && phoneInput && btn) {
-                    submitOrder(nameInput.value, phoneInput.value, btn);
+                var btn        = form.querySelector('button[type="submit"]');
+
+                if (!nameInput || !phoneInput || !btn) return;
+
+                // Valida telefone no cliente antes de enviar
+                var phone = normalizePhone(phoneInput.value);
+                if (!phone) {
+                    phoneInput.style.border = '2px solid red';
+                    phoneInput.placeholder  = 'Formato: +56 9 XXXX XXXX';
+                    phoneInput.focus();
+                    return;
                 }
+
+                btn.disabled     = true;
+                btn.textContent  = 'Enviando...';
+
+                // Normaliza o valor no campo antes do submit
+                phoneInput.value = phone;
+
+                // Submit nativo → POST para /api/send (server-side, sem CORS)
+                form.submit();
             });
         });
+
+        // Preenche val2 e val3 com +56 como antes
+        var v2 = document.querySelector('.val2');
+        var v3 = document.querySelector('.val3');
+        if (v2 && !v2.value) v2.value = '+56';
+        if (v3 && !v3.value) v3.value = '+56';
     });
 })();
 </script>
